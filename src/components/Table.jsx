@@ -1,8 +1,9 @@
+
 function TableHeader(){
     /* responsible for rendering the head of our table with the appropriate columns */
     return(
         <thead>
-        <tr>
+        <tr style={{ borderBottom:"solid 1px #ccc" }}>
           <th>Name</th>
           <th>URL</th>
           <th>Remove</th>
@@ -16,13 +17,13 @@ const TableBody = (props) => {
     // we use Array.map to create table rows from LinkData passed via props
     const rows = props.linkData.map((row, index) => {
       return (
-        <tr key={index}>
-          <td>{row.name}</td>
+        <tr key={index} style={{ borderBottom:"solid 1px #ccc"}}>
+          <td style={{padding:".8rem"}}>{row.name}</td>
           <td>
             <a href={row.URL}>{row.URL}</a>
           </td>
           <td>
-            <button onClick={() => props.removeLink(index)}>Delete</button>
+            <button onClick={() => props.removeLink(index)} style={{width:"5rem", height:"1.8rem", backgroundColor:"#1447FD", color:"white", borderRadius:".3rem", border:"none"}}>Delete</button>
           </td>
         </tr>
       )
@@ -32,11 +33,11 @@ const TableBody = (props) => {
   }
 
 
-function Table(){
+function Table(props){
     return(
-        <table>
+        <table style={{width:"100%", textAlign: "left", borderCollapse: "collapse"}}>
         <TableHeader/>
-        <TableBody/>
+        <TableBody linkData={props.linkData} removeLink={props.removeLink} />
         </table>
     )
 }
